@@ -60,27 +60,27 @@
             } else {
                 if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending) {
                     CTTelephonyNetworkInfo *telephonyInfo = [CTTelephonyNetworkInfo new];
-                    if ([telephonyInfo.currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyGPRS]) {
+                    if ([telephonyInfo.serviceCurrentRadioAccessTechnology objectForKey:CTRadioAccessTechnologyGPRS]) {
                         return @"2g";
-                    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyEdge]) {
+                    } else if ([telephonyInfo.serviceCurrentRadioAccessTechnology  objectForKey:CTRadioAccessTechnologyEdge]) {
                         return @"2g";
-                    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyWCDMA]) {
+                    } else if ([telephonyInfo.serviceCurrentRadioAccessTechnology  objectForKey:CTRadioAccessTechnologyWCDMA]) {
                         return @"3g";
-                    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyHSDPA]) {
+                    } else if ([telephonyInfo.serviceCurrentRadioAccessTechnology  objectForKey:CTRadioAccessTechnologyHSDPA]) {
                         return @"3g";
-                    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyHSUPA]) {
+                    } else if ([telephonyInfo.serviceCurrentRadioAccessTechnology  objectForKey:CTRadioAccessTechnologyHSUPA]) {
                         return @"3g";
-                    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyCDMA1x]) {
+                    } else if ([telephonyInfo.serviceCurrentRadioAccessTechnology  objectForKey:CTRadioAccessTechnologyCDMA1x]) {
                         return @"3g";
-                    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyCDMAEVDORev0]) {
+                    } else if ([telephonyInfo.serviceCurrentRadioAccessTechnology  objectForKey:CTRadioAccessTechnologyCDMAEVDORev0]) {
                         return @"3g";
-                    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyCDMAEVDORevA]) {
+                    } else if ([telephonyInfo.serviceCurrentRadioAccessTechnology  objectForKey:CTRadioAccessTechnologyCDMAEVDORevA]) {
                         return @"3g";
-                    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyCDMAEVDORevB]) {
+                    } else if ([telephonyInfo.serviceCurrentRadioAccessTechnology  objectForKey:CTRadioAccessTechnologyCDMAEVDORevB]) {
                         return @"3g";
-                    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyeHRPD]) {
+                    } else if ([telephonyInfo.serviceCurrentRadioAccessTechnology  objectForKey:CTRadioAccessTechnologyeHRPD]) {
                         return @"3g";
-                    } else if ([telephonyInfo.currentRadioAccessTechnology  isEqualToString:CTRadioAccessTechnologyLTE]) {
+                    } else if ([telephonyInfo.serviceCurrentRadioAccessTechnology  objectForKey:CTRadioAccessTechnologyLTE]) {
                         return @"4g";
                     }
                 }
@@ -152,7 +152,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateConnectionType:)
                                                  name:kReachabilityChangedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateConnectionType:)
-                                                 name:CTRadioAccessTechnologyDidChangeNotification object:nil];
+                                                 name:CTServiceRadioAccessTechnologyDidChangeNotification object:nil];
     if (UIApplicationDidEnterBackgroundNotification && UIApplicationWillEnterForegroundNotification) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPause) name:UIApplicationDidEnterBackgroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onResume) name:UIApplicationWillEnterForegroundNotification object:nil];
